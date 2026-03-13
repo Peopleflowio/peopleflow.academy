@@ -208,6 +208,14 @@ document.getElementById('upload-zone').addEventListener('drop', function(e) {
 });
 
 async function uploadVideo(file) {
+  // Extract video duration
+  const videoDuration = await new Promise((resolve) => {
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.onloadedmetadata = () => { window.URL.revokeObjectURL(video.src); resolve(video.duration); };
+    video.onerror = () => resolve(0);
+    video.src = window.URL.createObjectURL(file);
+  });
   document.getElementById('upload-zone').style.display = 'none';
   document.getElementById('upload-progress').style.display = 'block';
   document.getElementById('upload-filename').textContent = file.name;
@@ -236,7 +244,7 @@ async function uploadVideo(file) {
     await fetch('/admin/academy/lessons/{{ $lesson->id }}/confirm-upload', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content},
-      body: JSON.stringify({asset_id, file_size: file.size})
+      body: JSON.stringify({asset_id, file_size: file.size, duration_seconds: Math.round(videoDuration)})
     });
     document.getElementById('upload-progress').style.display = 'none';
     document.getElementById('upload-success').style.display = 'block';
