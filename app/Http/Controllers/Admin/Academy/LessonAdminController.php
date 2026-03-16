@@ -84,9 +84,9 @@ class LessonAdminController extends Controller
 
     public function confirmUpload(Request $request, Lesson $lesson)
     {
-        $data = $request->validate(['asset_id' => 'required|integer', 'file_size' => 'required|integer']);
+        $data = $request->validate(['asset_id' => 'required|integer', 'file_size' => 'required|integer', 'duration_seconds' => 'nullable|integer']);
         $asset = LessonAsset::findOrFail($data['asset_id']);
-        $this->content->confirmVideoUpload($asset, $data['file_size']);
+        $this->content->confirmVideoUpload($asset, $data['file_size'], $data['duration_seconds'] ?? 0);
         return response()->json(['ok' => true]);
     }
 }
