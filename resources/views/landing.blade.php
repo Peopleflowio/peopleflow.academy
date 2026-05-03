@@ -146,7 +146,7 @@
       <a href="{{ route('login') }}" class="btn-ghost">Sign In</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Expert Courses</div></div>
+      <div class="stat"><div class="stat-num">{{ $courseCount }}</div><div class="stat-label">Expert Courses</div></div>
       <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Process Walkthroughs</div></div>
       <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Practitioner-Built</div></div>
       <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Lifetime Access</div></div>

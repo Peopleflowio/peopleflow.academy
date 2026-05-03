@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('landing');
+    $courseCount = \App\Models\Academy\Package::where('is_published', true)->count();
+    return view('landing', ['courseCount' => $courseCount]);
 })->name('home');
 
 use App\Http\Controllers\ProfileController;
