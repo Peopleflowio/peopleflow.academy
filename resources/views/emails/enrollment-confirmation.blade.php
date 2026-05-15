@@ -5,23 +5,23 @@
   <style>
     body { font-family: Inter, sans-serif; background: #f4f4f5; margin: 0; padding: 40px 20px; }
     .container { max-width: 560px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; }
-    .header { background: #050508; padding: 32px; text-align: center; }
+    .header { background: #F5F4F0; padding: 32px; text-align: center; border-bottom: 1px solid #e8e6e1; }
     .header img { height: 32px; }
-    .header-title { color: #005edb; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; margin-top: 12px; }
+    .header-title { color: #2563EB; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; margin-top: 12px; }
     .body { padding: 32px; }
     .title { font-size: 22px; font-weight: 700; color: #111; margin-bottom: 8px; }
     .subtitle { font-size: 15px; color: #555; margin-bottom: 24px; line-height: 1.6; }
-    .course-card { background: #f8f8fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid #005edb; }
+    .course-card { background: #f8f8fa; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; border-left: 3px solid #2563EB; }
     .course-name { font-size: 16px; font-weight: 600; color: #111; }
     .course-meta { font-size: 13px; color: #777; margin-top: 4px; }
-    .btn { display: inline-block; background: #005edb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-bottom: 24px; }
+    .btn { display: inline-block; background: #2563EB; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; margin-bottom: 24px; }
     .footer { padding: 20px 32px; background: #f8f8fa; font-size: 12px; color: #999; text-align: center; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
-      <div style="color:white;font-size:20px;font-weight:700">Peopleflow <span style="color:#005edb">Academy</span></div>
+      <div style="color:#1a1a2e;font-size:20px;font-weight:700">Peopleflow <span style="color:#2563EB">Academy</span></div>
       <div class="header-title">ENROLLMENT CONFIRMED</div>
     </div>
     <div class="body">

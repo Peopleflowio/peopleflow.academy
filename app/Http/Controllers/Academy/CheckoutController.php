@@ -80,7 +80,14 @@ class CheckoutController extends Controller
             }
         }
 
-        \Illuminate\Support\Facades\Mail::to(auth()->user()->email)->send(new \App\Mail\EnrollmentConfirmation(auth()->user(), \App\Models\Academy\Package::find($packageId)));
+        $package = \App\Models\Academy\Package::find($packageId);
+        \Illuminate\Support\Facades\Mail::to(auth()->user()->email)->send(new \App\Mail\EnrollmentConfirmation(auth()->user(), $package));
+        \Illuminate\Support\Facades\Mail::raw(
+            "New enrollment!\n\nStudent: " . auth()->user()->name . "\nEmail: " . auth()->user()->email . "\nCourse: " . $package->title . "\nPrice: $" . number_format($package->price_cents / 100, 2) . "\nTime: " . now()->toDateTimeString(),
+            function($message) {
+                $message->to("admin@peopleflow.io")->subject("New Enrollment — Peopleflow Academy");
+            }
+        );
         return redirect()->route('academy.dashboard')->with('success', 'Enrollment successful! Your course is now unlocked.');
     }
 
