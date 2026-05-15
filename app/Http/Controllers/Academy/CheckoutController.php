@@ -35,6 +35,7 @@ class CheckoutController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
+            'allow_promotion_codes' => true,
             'success_url' => route('academy.checkout.success') . '?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => route('home'),
             'metadata' => [
