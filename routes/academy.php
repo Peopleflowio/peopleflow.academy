@@ -10,6 +10,8 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::get('/checkout/success', [\App\Http\Controllers\Academy\CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/{package:slug}', [\App\Http\Controllers\Academy\CheckoutController::class, 'checkout'])->name('checkout');
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');
+    Route::get('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'show'])->name('quiz');
+    Route::post('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'submit'])->name('quiz.submit');
     Route::get('/{package:slug}/{lesson:slug}', [\App\Http\Controllers\Academy\LessonController::class, 'show'])->name('lesson');
     Route::get('/{package:slug}', [\App\Http\Controllers\Academy\PackageController::class, 'show'])->name('package');
 });
@@ -50,4 +52,5 @@ Route::prefix('admin/academy/packages/{package}/modules')->name('admin.academy.m
 
 
 Route::post('/webhook/stripe', [\App\Http\Controllers\Academy\CheckoutController::class, 'webhook'])->name('stripe.webhook')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+
 

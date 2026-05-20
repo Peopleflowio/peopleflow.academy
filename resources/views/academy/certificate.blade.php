@@ -10,7 +10,7 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background: #F5F4F0; min-height: 100vh; padding: 40px 20px; }
     .back { display: inline-flex; align-items: center; gap: 6px; color: #2563EB; text-decoration: none; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
     .back:hover { opacity: 0.8; }
-    .cert-wrap { max-width: 860px; margin: 0 auto; }
+    .cert-wrap { max-width: 960px; margin: 0 auto; }
     .cert-actions { display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px; }
     .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; font-family: inherit; }
     .btn-primary { background: #2563EB; color: #fff; }
