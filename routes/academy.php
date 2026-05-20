@@ -54,3 +54,14 @@ Route::prefix('admin/academy/packages/{package}/modules')->name('admin.academy.m
 Route::post('/webhook/stripe', [\App\Http\Controllers\Academy\CheckoutController::class, 'webhook'])->name('stripe.webhook')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 
+
+Route::prefix('admin/academy/quizzes')->name('admin.academy.quizzes.')->middleware(['auth', 'platform_admin'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'index'])->name('index');
+    Route::get('/create', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'create'])->name('create');
+    Route::post('/', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'store'])->name('store');
+    Route::get('/{quiz}/edit', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'edit'])->name('edit');
+    Route::patch('/{quiz}', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'update'])->name('update');
+    Route::delete('/{quiz}', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'destroy'])->name('destroy');
+    Route::post('/{quiz}/questions', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'addQuestion'])->name('questions.store');
+    Route::delete('/{quiz}/questions/{question}', [\App\Http\Controllers\Admin\Academy\QuizAdminController::class, 'deleteQuestion'])->name('questions.destroy');
+});
