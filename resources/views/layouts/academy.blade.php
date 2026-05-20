@@ -78,11 +78,10 @@
 <div class="shell">
   <aside class="sidebar">
     <div class="sb-logo">
-      <div class="sb-logo-mark">🎓</div>
-      <div class="sb-logo-text">
-        <span class="brand">Peopleflow Academy</span>
-        <span class="sub">HCM Training</span>
-      </div>
+      <a href="{{ route('home') }}" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <img src="/images/peopleflow-logo.png" alt="Peopleflow" style="height:24px;width:auto;">
+        <span style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:#2563EB;">Academy</span>
+      </a>
     </div>
 
     <div class="sb-section">Learn</div>
