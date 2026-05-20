@@ -20,7 +20,7 @@
       @php $enrolled = in_array($package->id, $accessibleIds); @endphp
       <div class="card" style="overflow:hidden;display:flex;flex-direction:column">
         <a href="{{ $enrolled ? route('academy.package', $package->slug) : '#' }}" style="text-decoration:none;display:block">
-          <div style="height:130px;background:linear-gradient(135deg,#0f172a,#1e293b);display:flex;align-items:center;justify-content:center;font-size:42px;position:relative">
+          <div style="height:130px;background:linear-gradient(135deg,#EEF2FF,#E0E7FF);display:flex;align-items:center;justify-content:center;font-size:42px;position:relative">
             {{ $package->emoji_icon }}
             @if($enrolled)
               <span style="position:absolute;top:10px;right:10px" class="badge badge-green"><span class="dot dot-green"></span> Enrolled</span>

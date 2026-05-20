@@ -8,10 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-    :root{--bg:#0d0f14;--bg2:#13161d;--surface:#181b23;--surface2:#1e2230;--border:#252a38;--border2:#2e3447;--ink:#f0f2f7;--ink2:#a8b0c8;--ink3:#5a6278;--accent:#3b82f6;--accent2:#1d4ed8;--accent-light:rgba(59,130,246,0.12);--green:#22c55e;--green-bg:rgba(34,197,94,0.1);--amber:#f59e0b;--amber-bg:rgba(245,158,11,0.1);--red:#ef4444;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,0.3)}
+    :root{--bg:#F5F4F0;--bg2:#ffffff;--surface:#ffffff;--surface2:#F0EEE9;--border:#e8e6e1;--border2:#dddbd6;--ink:#1a1a2e;--ink2:#4a4a6a;--ink3:#9090a8;--accent:#2563EB;--accent2:#1d4ed8;--accent-light:rgba(37,99,235,0.08);--green:#16a34a;--green-bg:rgba(22,163,74,0.08);--amber:#d97706;--amber-bg:rgba(217,119,6,0.08);--red:#dc2626;--radius:12px;--radius-sm:8px;--shadow:0 1px 3px rgba(0,0,0,0.08)}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
-    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+    ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#c8c6c0;border-radius:3px}
     a{text-decoration:none;color:inherit}
     .shell{display:flex;height:100vh;overflow:hidden}
 
