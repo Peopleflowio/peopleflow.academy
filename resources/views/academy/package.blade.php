@@ -17,27 +17,27 @@ cat > resources/views/academy/package.blade.php << 'EOF'
   </div>
 
   {{-- HERO --}}
-  <div style="background:linear-gradient(135deg,#1e2d5c,#0a1535);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:20px">
+  <div style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-bottom:20px">
     <div style="display:flex;align-items:flex-start;gap:16px">
       <div style="font-size:42px;flex-shrink:0">{{ $package->emoji_icon }}</div>
       <div style="flex:1">
-        <h1 style="font-family:'Instrument Serif',serif;font-size:26px;font-weight:400;color:#fff;margin-bottom:6px">{{ $package->title }}</h1>
-        <p style="font-size:13.5px;color:rgba(255,255,255,0.6);margin-bottom:12px;line-height:1.5">{{ $package->description }}</p>
-        <div style="display:flex;gap:16px;font-size:13px;color:rgba(255,255,255,0.5)">
+        <h1 style="font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;color:#1a1a2e;margin-bottom:6px">{{ $package->title }}</h1>
+        <p style="font-size:13.5px;color:#4a4a6a;margin-bottom:12px;line-height:1.5">{{ $package->description }}</p>
+        <div style="display:flex;gap:16px;font-size:13px;color:#9090a8">
           <span>{{ $publishedLessonCount }} lessons</span>
           <span>{{ $package->modules->count() }} {{ Str::plural('module', $package->modules->count()) }}</span>
         </div>
       </div>
       @if(!$hasAccess)
         <div style="text-align:right;flex-shrink:0">
-          <div style="font-family:'Geist Mono',monospace;font-size:24px;font-weight:700;color:#fff">{{ $package->price_formatted }}</div>
-          <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">per seat</div>
+          <div style="font-family:monospace;font-size:24px;font-weight:700;color:#1a1a2e">{{ $package->price_formatted }}</div>
+          <div style="font-size:11px;color:#9090a8;margin-top:2px">per seat</div>
         </div>
       @else
         @if(isset($progressData) && $progressData)
           <div style="text-align:right;flex-shrink:0">
             <div style="font-family:'Geist Mono',monospace;font-size:22px;font-weight:700;color:var(--accent)">{{ $progressData['percent'] }}%</div>
-            <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px">complete</div>
+            <div style="font-size:11px;color:#9090a8;margin-top:2px">complete</div>
           </div>
         @endif
       @endif
@@ -48,7 +48,7 @@ cat > resources/views/academy/package.blade.php << 'EOF'
         <div class="progress-track" style="height:6px">
           <div class="progress-fill progress-fill-blue" style="width:{{ $progressData['percent'] }}%"></div>
         </div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:5px">{{ $progressData['completed'] }} of {{ $progressData['total'] }} lessons complete</div>
+        <div style="font-size:11px;color:#9090a8;margin-top:5px">{{ $progressData['completed'] }} of {{ $progressData['total'] }} lessons complete</div>
       </div>
     @endif
   </div>
@@ -67,6 +67,25 @@ cat > resources/views/academy/package.blade.php << 'EOF'
     <div style="margin-bottom:16px">
       <a href="{{ route('academy.lesson', [$package->slug, $continueLesson->slug]) }}" class="btn btn-primary" style="width:100%;justify-content:center">
         ▶ Continue — {{ $continueLesson->title }}
+      </a>
+    </div>
+  @endif
+
+  {{-- QUIZ BUTTON --}}
+  @php $quiz = \App\Models\Quiz::where('package_id', $package->id)->where('is_active', true)->first(); @endphp
+  @if($hasAccess && $quiz)
+    <div style="margin-bottom:16px">
+      <a href="{{ route('academy.quiz', $package->slug) }}" class="btn btn-secondary" style="width:100%;justify-content:center;border:1px solid #e8e6e1">
+        📝 Take Quiz — {{ $quiz->title }}
+      </a>
+    </div>
+  @endif
+
+  {{-- CERTIFICATE BUTTON --}}
+  @if($hasAccess && isset($progressData) && $progressData['percent'] == 100)
+    <div style="margin-bottom:16px">
+      <a href="{{ route('academy.certificate', $package->slug) }}" class="btn btn-primary" style="width:100%;justify-content:center;background:#16a34a">
+        🎓 Get Your Certificate
       </a>
     </div>
   @endif
