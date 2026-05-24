@@ -82,6 +82,21 @@ class CheckoutController extends Controller
         }
 
         $package = \App\Models\Academy\Package::find($packageId);
+        
+        // Check if this is referred user's first purchase - award commission
+        $referral = \App\Models\Referral::where('referred_id', $userId)
+            ->where('status', 'pending')
+            ->first();
+        if ($referral) {
+            $commissionPercent = (int) \App\Models\Setting::get('referral_commission_percent', 20);
+            $rewardCents = (int) round($session->amount_total * $commissionPercent / 100);
+            $referral->update([
+                'status' => 'converted',
+                'reward_cents' => $rewardCents,
+                'converted_at' => now(),
+            ]);
+        }
+
         \Illuminate\Support\Facades\Mail::to(auth()->user()->email)->send(new \App\Mail\EnrollmentConfirmation(auth()->user(), $package));
         \Illuminate\Support\Facades\Mail::raw(
             "New enrollment!\n\nStudent: " . auth()->user()->name . "\nEmail: " . auth()->user()->email . "\nCourse: " . $package->title . "\nPrice: $" . number_format($package->price_cents / 100, 2) . "\nTime: " . now()->toDateTimeString(),

@@ -10,6 +10,7 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::get('/checkout/success', [\App\Http\Controllers\Academy\CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/{package:slug}', [\App\Http\Controllers\Academy\CheckoutController::class, 'checkout'])->name('checkout');
     Route::get('/referrals', [\App\Http\Controllers\Academy\ReferralController::class, 'index'])->name('referrals');
+    Route::post('/referrals/payout', [\App\Http\Controllers\Academy\ReferralController::class, 'requestPayout'])->name('referrals.payout');
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');
     Route::get('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'show'])->name('quiz');
     Route::post('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'submit'])->name('quiz.submit');
@@ -51,6 +52,12 @@ Route::prefix('admin/academy/packages/{package}/modules')->name('admin.academy.m
 });
 
 
+
+Route::prefix('admin/settings')->name('admin.settings.')->middleware(['auth', 'platform_admin'])->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('index');
+    Route::patch('/', [\App\Http\Controllers\Admin\SettingsController::class, 'update'])->name('update');
+    Route::patch('/payouts/{payout}', [\App\Http\Controllers\Admin\SettingsController::class, 'updatePayout'])->name('payout');
+});
 
 Route::post('/webhook/stripe', [\App\Http\Controllers\Academy\CheckoutController::class, 'webhook'])->name('stripe.webhook')->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
