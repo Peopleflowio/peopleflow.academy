@@ -17,6 +17,7 @@ class User extends Authenticatable
         'password',
         'role',
         'organization_id',
+        'referral_code',
     ];
 
     protected $hidden = [
@@ -45,5 +46,30 @@ class User extends Authenticatable
     public function organization()
     {
         return $this->belongsTo(\App\Models\Organization::class);
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(Referral::class, 'referrer_id');
+    }
+
+    public function referredBy()
+    {
+        return $this->hasOne(Referral::class, 'referred_id');
+    }
+
+    public function generateReferralCode(): string
+    {
+        $code = strtoupper(substr(str_replace(['+','/','='], '', base64_encode($this->name)), 0, 4) . str_pad($this->id, 4, '0', STR_PAD_LEFT));
+        $this->update(['referral_code' => $code]);
+        return $code;
+    }
+
+    public function getReferralCodeAttribute($value): string
+    {
+        if (!$value) {
+            return $this->generateReferralCode();
+        }
+        return $value;
     }
 }

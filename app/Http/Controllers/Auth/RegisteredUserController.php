@@ -22,6 +22,9 @@ class RegisteredUserController extends Controller
         if (request()->has('intended')) {
             session(['url.intended' => request()->get('intended')]);
         }
+        if (request()->has('ref')) {
+            session(['referral_code' => request()->get('ref')]);
+        }
         return view('auth.register');
     }
 

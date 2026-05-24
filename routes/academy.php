@@ -9,6 +9,7 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::put('/profile/password', [\App\Http\Controllers\Academy\ProfileController::class, 'updatePassword'])->name('profile.password');
     Route::get('/checkout/success', [\App\Http\Controllers\Academy\CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/{package:slug}', [\App\Http\Controllers\Academy\CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/referrals', [\App\Http\Controllers\Academy\ReferralController::class, 'index'])->name('referrals');
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');
     Route::get('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'show'])->name('quiz');
     Route::post('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'submit'])->name('quiz.submit');
