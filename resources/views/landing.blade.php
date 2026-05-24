@@ -199,7 +199,7 @@
     <div class="course-card {{ $index === 0 ? 'featured' : '' }}">
       @if($index === 0)<div class="course-badge">Most Popular</div>@endif
       <div class="course-emoji">{{ $package->emoji_icon }}</div>
-      <div class="course-title">{{ $package->title }}</div>
+      <a href="{{ route('course.show', $package->slug) }}" style="text-decoration:none"><div class="course-title" style="cursor:pointer">{{ $package->title }}</div></a>
       <div class="course-desc">{{ $package->description }}</div>
       <div class="course-meta" style="flex-direction:column;align-items:flex-start;gap:14px">
         <div class="course-price">${{ number_format($package->price_cents / 100) }} <span>/ seat</span></div>

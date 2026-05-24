@@ -25,5 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/courses/{package:slug}', [\App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
 require __DIR__.'/auth.php';
 require base_path('routes/academy.php');
