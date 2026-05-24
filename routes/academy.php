@@ -10,6 +10,8 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::get('/checkout/success', [\App\Http\Controllers\Academy\CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/checkout/{package:slug}', [\App\Http\Controllers\Academy\CheckoutController::class, 'checkout'])->name('checkout');
     Route::get('/referrals', [\App\Http\Controllers\Academy\ReferralController::class, 'index'])->name('referrals');
+    Route::get('/feedback', [\App\Http\Controllers\Academy\FeedbackController::class, 'index'])->name('feedback');
+    Route::post('/feedback', [\App\Http\Controllers\Academy\FeedbackController::class, 'store'])->name('feedback.store');
     Route::post('/referrals/payout', [\App\Http\Controllers\Academy\ReferralController::class, 'requestPayout'])->name('referrals.payout');
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');
     Route::get('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'show'])->name('quiz');
@@ -52,6 +54,8 @@ Route::prefix('admin/academy/packages/{package}/modules')->name('admin.academy.m
 });
 
 
+
+Route::get('admin/feedback', [\App\Http\Controllers\Admin\FeedbackAdminController::class, 'index'])->name('admin.feedback')->middleware(['auth','platform_admin']);
 
 Route::prefix('admin/settings')->name('admin.settings.')->middleware(['auth', 'platform_admin'])->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('index');
