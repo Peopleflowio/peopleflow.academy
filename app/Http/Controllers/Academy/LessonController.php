@@ -17,12 +17,21 @@ class LessonController extends Controller
         $lesson->load(['steps', 'assets', 'module']);
         $videoUrl     = null;
         $userProgress = null;
-        if (auth()->check() && $this->entitlement->hasAccess(auth()->user(), $package)) {
+
+        // Check if this lesson is in the first module (free preview)
+        $firstModule = $package->modules()->orderBy('sort_order')->first();
+        $isFreePreview = $firstModule && $lesson->module_id === $firstModule->id;
+
+        $hasAccess = auth()->check() && $this->entitlement->hasAccess(auth()->user(), $package);
+
+        if ($hasAccess || $isFreePreview) {
             $videoAsset = $lesson->videoAsset;
             if ($videoAsset) {
                 try { $videoUrl = $this->videoUrl->generateStreamUrl($videoAsset); } catch (\Exception $e) {}
             }
-            $userProgress = LessonProgress::firstOrNew(['user_id' => auth()->id(), 'lesson_id' => $lesson->id]);
+            if (auth()->check()) {
+                $userProgress = LessonProgress::firstOrNew(['user_id' => auth()->id(), 'lesson_id' => $lesson->id]);
+            }
         }
         $nextLesson = $this->progress->nextLesson($lesson);
         $prevLesson = Lesson::where('module_id', $lesson->module_id)

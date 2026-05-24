@@ -17,9 +17,11 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');
     Route::get('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'show'])->name('quiz');
     Route::post('/{package:slug}/quiz', [\App\Http\Controllers\Academy\QuizController::class, 'submit'])->name('quiz.submit');
-    Route::get('/{package:slug}/{lesson:slug}', [\App\Http\Controllers\Academy\LessonController::class, 'show'])->name('lesson');
+
     Route::get('/{package:slug}', [\App\Http\Controllers\Academy\PackageController::class, 'show'])->name('package');
 });
+
+Route::get('academy/{package:slug}/{lesson:slug}', [\App\Http\Controllers\Academy\LessonController::class, 'show'])->name('academy.lesson');
 
 Route::get('admin', [\App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'platform_admin']);
 

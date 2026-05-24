@@ -152,11 +152,7 @@
               <div class="lesson-row">
                 @if($moduleIndex === 0)
                   <div class="lesson-icon lesson-free">▶</div>
-                  @if($enrolled)
-                    <a href="{{ route('academy.lesson', [$package->slug, $lesson->slug]) }}" class="lesson-title">{{ $lesson->title }}</a>
-                  @else
-                    <span class="lesson-title">{{ $lesson->title }}</span>
-                  @endif
+                  <a href="{{ route('academy.lesson', [$package->slug, $lesson->slug]) }}" class="lesson-title">{{ $lesson->title }}</a>
                   <span class="free-tag">FREE</span>
                 @else
                   <div class="lesson-icon lesson-locked">🔒</div>
