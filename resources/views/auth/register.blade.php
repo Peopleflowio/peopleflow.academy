@@ -3,6 +3,7 @@
 <div class="auth-subtitle">Join Peopleflow Academy and start learning today</div>
 
 <form method="POST" action="{{ route('register') }}">
+  <input type="hidden" name="ref" value="{{ request()->get('ref', session('referral_code')) }}">
   @csrf
   <div class="form-group">
     <label>Full Name</label>
