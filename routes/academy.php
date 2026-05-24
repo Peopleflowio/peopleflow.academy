@@ -11,6 +11,7 @@ Route::prefix('academy')->name('academy.')->middleware(['auth'])->group(function
     Route::get('/checkout/{package:slug}', [\App\Http\Controllers\Academy\CheckoutController::class, 'checkout'])->name('checkout');
     Route::get('/referrals', [\App\Http\Controllers\Academy\ReferralController::class, 'index'])->name('referrals');
     Route::get('/feedback', [\App\Http\Controllers\Academy\FeedbackController::class, 'index'])->name('feedback');
+    Route::get('/faq', [\App\Http\Controllers\Academy\FaqController::class, 'index'])->name('faq');
     Route::post('/feedback', [\App\Http\Controllers\Academy\FeedbackController::class, 'store'])->name('feedback.store');
     Route::post('/referrals/payout', [\App\Http\Controllers\Academy\ReferralController::class, 'requestPayout'])->name('referrals.payout');
     Route::get('/{package:slug}/certificate', [\App\Http\Controllers\Academy\CertificateController::class, 'show'])->name('certificate');

@@ -102,6 +102,10 @@
       <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
       Feedback
     </a>
+    <a href="{{ route('academy.faq') }}" class="sb-item {{ request()->routeIs('academy.faq') ? 'active' : '' }}">
+      <svg class="sb-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      FAQ & Help
+    </a>
     @auth
       @if(auth()->user()->isAdmin())
         <div class="sb-section">Admin</div>
