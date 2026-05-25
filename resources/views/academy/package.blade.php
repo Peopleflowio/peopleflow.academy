@@ -1,4 +1,3 @@
-cat > resources/views/academy/package.blade.php << 'EOF'
 @extends('layouts.academy')
 @section('title', $package->title)
 @section('topbar-title', $package->title)
